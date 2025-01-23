@@ -1,6 +1,5 @@
 package com.hmso.cadastro.dominio;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "pessoa")
-public class Pessoa {
+@Table(name = "person")
+public class Person {
     @Id
     private String nome;
     private String email;
