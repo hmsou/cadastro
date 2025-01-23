@@ -27,6 +27,14 @@ public class PersonController {
         return personService.findPersons();
     }
 
+    @PutMapping(path = "/{person_id}")
+    public Person updatePerson(
+            @PathVariable Long person_id,
+            @RequestBody Person person
+    ){
+        return personService.updatePerson(person_id, person);
+    }
+
     @DeleteMapping("/{person_id}")
     public void deletePerson(@PathVariable Long person_id){
         personService.deletePerson(person_id);
