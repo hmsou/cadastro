@@ -19,7 +19,7 @@ public class AnswerService {
 
     public Answer addAnswer(Answer answer){
         if(answer.getId() != null){
-            throw new IllegalArgumentException("Answer already got an IF");
+            throw new IllegalArgumentException("Answer already got an ID");
         }
         answerRepository.save(new Answer(
                 null,

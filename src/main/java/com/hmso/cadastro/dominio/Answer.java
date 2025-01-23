@@ -9,9 +9,9 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long text;
+    private String text;
 
-    public Answer(Long id, Long text) {
+    public Answer(Long id, String text) {
         this.id = id;
         this.text = text;
     }
@@ -27,11 +27,11 @@ public class Answer {
         this.id = id;
     }
 
-    public Long getText() {
+    public String getText() {
         return text;
     }
 
-    public void setText(Long text) {
+    public void setText(String text) {
         this.text = text;
     }
 }
