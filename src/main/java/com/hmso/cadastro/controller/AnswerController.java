@@ -33,4 +33,9 @@ public class AnswerController {
             @RequestBody Answer answer){
         return answerService.updateAnswer(answer_id, answer);
     }
+
+    @DeleteMapping(path = "/{answer_id}")
+    public void deleteAnswer(@PathVariable Long answer_id){
+        answerService.deleteAnswer(answer_id);
+    }
 }
