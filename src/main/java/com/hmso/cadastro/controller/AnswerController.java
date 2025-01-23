@@ -26,4 +26,11 @@ public class AnswerController {
     public List<Answer> findAnswers(){
         return answerService.findAnswers();
     }
+
+    @PutMapping(path = "/{answer_id}")
+    public Answer updateAnswer(
+            @PathVariable Long answer_id,
+            @RequestBody Answer answer){
+        return answerService.updateAnswer(answer_id, answer);
+    }
 }

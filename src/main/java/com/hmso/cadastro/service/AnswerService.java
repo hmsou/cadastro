@@ -43,7 +43,7 @@ public class AnswerService {
 
         existingAnswer.setText(answer.getText());
 
-        return existingAnswer;
+        return answerRepository.save(existingAnswer);
     }
 
     public void deleteAnswer(Long answerId){
