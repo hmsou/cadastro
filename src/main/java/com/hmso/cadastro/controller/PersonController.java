@@ -26,4 +26,9 @@ public class PersonController {
     public List<Person> findAllPersons(){
         return personService.findPersons();
     }
+
+    @DeleteMapping("/{person_id}")
+    public void deletePerson(@PathVariable Long person_id){
+        personService.deletePerson(person_id);
+    }
 }

@@ -37,7 +37,7 @@ public class PersonService {
     }
 
     @Transactional
-    public void deletePerson(String personName){
-        personRepository.deleteById(personName);
+    public void deletePerson(Long person_id){
+        personRepository.deleteById(person_id);
     }
 }
