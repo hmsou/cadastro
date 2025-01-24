@@ -4,7 +4,6 @@ import com.hmso.cadastro.dominio.dto.PersonDto;
 import com.hmso.cadastro.dominio.entities.Person;
 import com.hmso.cadastro.mappers.PersonMapper;
 import com.hmso.cadastro.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,8 @@ public class PersonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonDto>> findAllPersons(){
-        return new ResponseEntity<>(personService.findPersons()
+    public ResponseEntity<List<PersonDto>> findAllPersonList(){
+        return new ResponseEntity<>(personService.findPersonList()
                 .stream()
                 .map(personMapper::toDto)
                 .toList(), HttpStatus.OK);
