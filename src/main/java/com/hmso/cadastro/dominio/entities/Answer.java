@@ -16,6 +16,7 @@ public class Answer {
     private Person person;
 
     @ManyToOne
+    @JoinColumn(name = "question_id")
     private Question perguntas;
 
     public Answer(Long id, String text, Person person, Question perguntas) {
