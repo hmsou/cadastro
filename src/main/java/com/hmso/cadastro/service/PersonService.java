@@ -31,6 +31,10 @@ public class PersonService {
             throw new IllegalArgumentException("Person already has an ID");
         }
 
+        if(!person.getEmail().contains("@")){
+            throw new IllegalArgumentException("Email should have '@'");
+        }
+
         personRepository.save(new Person(
                 null,
                 person.getNome(),

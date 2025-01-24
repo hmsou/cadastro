@@ -1,6 +1,8 @@
 package com.hmso.cadastro.controller;
 
+import com.hmso.cadastro.dominio.dto.QuestionDto;
 import com.hmso.cadastro.dominio.entities.Question;
+import com.hmso.cadastro.mappers.QuestionMapper;
 import com.hmso.cadastro.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +13,11 @@ import java.util.List;
 @RequestMapping("questions")
 public class QuestionController {
     private final QuestionService questionService;
+    private final QuestionMapper questionMapper;
 
-    @Autowired
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, QuestionMapper questionMapper) {
         this.questionService = questionService;
+        this.questionMapper = questionMapper;
     }
 
     @PostMapping
@@ -23,8 +26,11 @@ public class QuestionController {
     }
 
     @GetMapping
-    public List<Question> findAllQuestions(){
-        return questionService.findAllQuestions();
+    public List<QuestionDto> findAllQuestions(){
+        return questionService.findAllQuestions()
+                .stream()
+                .map(questionMapper::toDto)
+                .toList();
     }
 
     @GetMapping(path = "{question_id}")

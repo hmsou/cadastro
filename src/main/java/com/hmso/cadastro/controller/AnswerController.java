@@ -1,6 +1,8 @@
 package com.hmso.cadastro.controller;
 
+import com.hmso.cadastro.dominio.dto.AnswerDto;
 import com.hmso.cadastro.dominio.entities.Answer;
+import com.hmso.cadastro.mappers.AnswerMapper;
 import com.hmso.cadastro.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +13,13 @@ import java.util.List;
 @RequestMapping("answers")
 public class AnswerController {
     private final AnswerService answerService;
+    private final AnswerMapper answerMapper;
 
-    @Autowired
-    public AnswerController(AnswerService answerService) {
+    public AnswerController(AnswerService answerService, AnswerMapper answerMapper) {
         this.answerService = answerService;
+        this.answerMapper = answerMapper;
     }
+
 
     @PostMapping(path= "/{person_id}/{question_id}")
     public Answer addAnswer(@PathVariable Long person_id,
@@ -25,8 +29,12 @@ public class AnswerController {
     }
 
     @GetMapping
-    public List<Answer> findAnswers(){
-        return answerService.findAnswers();
+    public List<AnswerDto> findAnswers(){
+
+        return answerService.findAnswers()
+                .stream()
+                .map(answerMapper::toDto)
+                .toList();
     }
 
     @GetMapping(path = "{answer_id}")
