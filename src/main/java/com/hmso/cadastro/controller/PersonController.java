@@ -1,6 +1,8 @@
 package com.hmso.cadastro.controller;
 
+import com.hmso.cadastro.dominio.dto.PersonDto;
 import com.hmso.cadastro.dominio.entities.Person;
+import com.hmso.cadastro.mappers.PersonMapper;
 import com.hmso.cadastro.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +13,13 @@ import java.util.List;
 @RequestMapping(path = "persons")
 public class PersonController {
     private final PersonService personService;
+    private final PersonMapper personMapper;
 
-    @Autowired
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, PersonMapper personMapper) {
         this.personService = personService;
+        this.personMapper = personMapper;
     }
+
 
     @PostMapping
     public Person addPerson(@RequestBody Person person){
@@ -23,8 +27,11 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<Person> findAllPersons(){
-        return personService.findPersons();
+    public List<PersonDto> findAllPersons(){
+        return personService.findPersons()
+                .stream()
+                .map(personMapper::toDto)
+                .toList();
     }
 
     @GetMapping(path = "/{person_id}")
