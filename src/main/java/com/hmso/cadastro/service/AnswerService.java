@@ -1,8 +1,8 @@
 package com.hmso.cadastro.service;
 
-import com.hmso.cadastro.dominio.Answer;
-import com.hmso.cadastro.dominio.Person;
-import com.hmso.cadastro.dominio.Question;
+import com.hmso.cadastro.dominio.entities.Answer;
+import com.hmso.cadastro.dominio.entities.Person;
+import com.hmso.cadastro.dominio.entities.Question;
 import com.hmso.cadastro.repository.AnswerRepository;
 import com.hmso.cadastro.repository.PersonRepository;
 import com.hmso.cadastro.repository.QuestionRepository;

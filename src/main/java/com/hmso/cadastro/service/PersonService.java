@@ -1,6 +1,6 @@
 package com.hmso.cadastro.service;
 
-import com.hmso.cadastro.dominio.Person;
+import com.hmso.cadastro.dominio.entities.Person;
 import com.hmso.cadastro.repository.PersonRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

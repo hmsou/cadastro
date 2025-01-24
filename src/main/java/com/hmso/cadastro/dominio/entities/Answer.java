@@ -1,10 +1,6 @@
-package com.hmso.cadastro.dominio;
+package com.hmso.cadastro.dominio.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "answer")
@@ -17,12 +13,9 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "person_id")
-    @JsonManagedReference("person-answers")
     private Person person;
 
     @ManyToOne
-    @JoinColumn(name = "question_id")
-    @JsonManagedReference("questions-answers")
     private Question perguntas;
 
     public Answer(Long id, String text, Person person, Question perguntas) {

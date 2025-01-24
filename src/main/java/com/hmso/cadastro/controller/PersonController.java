@@ -1,6 +1,6 @@
 package com.hmso.cadastro.controller;
 
-import com.hmso.cadastro.dominio.Person;
+import com.hmso.cadastro.dominio.entities.Person;
 import com.hmso.cadastro.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

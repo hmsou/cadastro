@@ -1,6 +1,6 @@
 package com.hmso.cadastro.controller;
 
-import com.hmso.cadastro.dominio.Answer;
+import com.hmso.cadastro.dominio.entities.Answer;
 import com.hmso.cadastro.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

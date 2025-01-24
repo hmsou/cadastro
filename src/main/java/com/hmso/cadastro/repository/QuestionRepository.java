@@ -1,6 +1,6 @@
 package com.hmso.cadastro.repository;
 
-import com.hmso.cadastro.dominio.Question;
+import com.hmso.cadastro.dominio.entities.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

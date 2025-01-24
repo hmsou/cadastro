@@ -1,12 +1,11 @@
 package com.hmso.cadastro.service;
 
-import com.hmso.cadastro.dominio.Question;
+import com.hmso.cadastro.dominio.entities.Question;
 import com.hmso.cadastro.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class QuestionService {
