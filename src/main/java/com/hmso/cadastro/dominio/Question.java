@@ -1,5 +1,6 @@
 package com.hmso.cadastro.dominio;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -15,7 +16,7 @@ public class Question {
     private String text;
 
     @OneToMany(mappedBy = "perguntas", cascade = CascadeType.ALL)
-    @JsonManagedReference("questions-answers")
+    @JsonBackReference("questions-answers")
     private List<Answer> answers;
 
     public Question(Long id, String text, List<Answer> answers) {
