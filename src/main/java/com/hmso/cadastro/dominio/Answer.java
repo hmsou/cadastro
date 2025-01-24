@@ -2,6 +2,8 @@ package com.hmso.cadastro.dominio;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "answer")
 public class Answer {
@@ -11,9 +13,19 @@ public class Answer {
 
     private String text;
 
-    public Answer(Long id, String text) {
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question perguntas;
+
+    public Answer(Long id, String text, Person person, Question perguntas) {
         this.id = id;
         this.text = text;
+        this.person = person;
+        this.perguntas = perguntas;
     }
 
     public Answer() {
@@ -33,5 +45,21 @@ public class Answer {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Question getPerguntas() {
+        return perguntas;
+    }
+
+    public void setPerguntas(Question perguntas) {
+        this.perguntas = perguntas;
     }
 }

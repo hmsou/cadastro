@@ -2,6 +2,7 @@ package com.hmso.cadastro.dominio;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,12 +17,16 @@ public class Person {
     private int idade;
     private double altura;
 
-    public Person(Long id, String nome, String email, int idade, double altura) {
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Answer> answers;
+
+    public Person(Long id, String nome, String email, int idade, double altura, List<Answer> answers) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.idade = idade;
         this.altura = altura;
+        this.answers = answers;
     }
 
     public Person() {
@@ -67,26 +72,11 @@ public class Person {
         this.altura = altura;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return idade == person.idade && Double.compare(altura, person.altura) == 0 && Objects.equals(id, person.id) && Objects.equals(nome, person.nome) && Objects.equals(email, person.email);
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, email, idade, altura);
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", idade=" + idade +
-                ", altura=" + altura +
-                '}';
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

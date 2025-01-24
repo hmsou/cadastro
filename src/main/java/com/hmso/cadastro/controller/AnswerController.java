@@ -18,8 +18,10 @@ public class AnswerController {
     }
 
     @PostMapping
-    public Answer addAnswer(@RequestBody Answer answer){
-        return answerService.addAnswer(answer);
+    public Answer addAnswer(@PathVariable Long person_id,
+                            @PathVariable Long question_id,
+                            @RequestBody Answer answer){
+        return answerService.addAnswer(person_id, question_id, answer);
     }
 
     @GetMapping

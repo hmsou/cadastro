@@ -2,6 +2,8 @@ package com.hmso.cadastro.dominio;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "perguntas")
 public class Question {
@@ -11,9 +13,13 @@ public class Question {
 
     private String text;
 
-    public Question(Long id, String text) {
+    @OneToMany(mappedBy = "perguntas", cascade = CascadeType.ALL)
+    private List<Answer> answers;
+
+    public Question(Long id, String text, List<Answer> answers) {
         this.id = id;
         this.text = text;
+        this.answers = answers;
     }
 
     public Question() {
@@ -33,5 +39,13 @@ public class Question {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

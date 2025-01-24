@@ -1,7 +1,11 @@
 package com.hmso.cadastro.service;
 
 import com.hmso.cadastro.dominio.Answer;
+import com.hmso.cadastro.dominio.Person;
+import com.hmso.cadastro.dominio.Question;
 import com.hmso.cadastro.repository.AnswerRepository;
+import com.hmso.cadastro.repository.PersonRepository;
+import com.hmso.cadastro.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +15,29 @@ import java.util.Objects;
 @Service
 public class AnswerService {
     private final AnswerRepository answerRepository;
+    private final PersonRepository personRepository;
+    private final QuestionRepository questionRepository;
 
     @Autowired
-    public AnswerService(AnswerRepository answerRepository) {
+    public AnswerService(AnswerRepository answerRepository, PersonRepository personRepository, QuestionRepository questionRepository) {
         this.answerRepository = answerRepository;
+        this.personRepository = personRepository;
+        this.questionRepository = questionRepository;
     }
 
-    public Answer addAnswer(Answer answer){
+    public Answer addAnswer(Long personId, Long questionId, Answer answer){
         if(answer.getId() != null){
             throw new IllegalArgumentException("Answer already got an ID");
         }
+
+        Person person = personRepository.findById(personId).orElseThrow(() -> new IllegalArgumentException("Person not found"));
+        Question question = questionRepository.findById(questionId).orElseThrow(() -> new IllegalArgumentException("Question not found"));
+
         answerRepository.save(new Answer(
                 null,
-                answer.getText()
+                answer.getText(),
+                person,
+                question
         ));
         return answer;
     }

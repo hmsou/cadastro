@@ -24,7 +24,8 @@ public class QuestionService {
 
         questionRepository.save(new Question(
                 null,
-                question.getText()
+                question.getText(),
+                null
         ));
         return question;
     }

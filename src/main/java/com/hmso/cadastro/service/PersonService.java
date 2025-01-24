@@ -36,7 +36,8 @@ public class PersonService {
                 person.getNome(),
                 person.getEmail(),
                 person.getIdade(),
-                person.getAltura()
+                person.getAltura(),
+                null
         ));
         return person;
     }
