@@ -28,6 +28,11 @@ public class QuestionController {
         return questionService.findAllQuestions();
     }
 
+    @GetMapping(path = "{question_id}")
+    public Question findQuestionById(@PathVariable Long question_id){
+        return questionService.findQuestionById(question_id);
+    }
+
     @PutMapping(path = "/{question_id}")
     public Question updateQuestion(
             @PathVariable Long question_id,

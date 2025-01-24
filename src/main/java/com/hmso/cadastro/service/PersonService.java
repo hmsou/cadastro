@@ -22,6 +22,10 @@ public class PersonService {
         return personRepository.findAll();
     }
 
+    public Person findPersonById(Long personId){
+        return personRepository.findById(personId).orElseThrow(()-> new IllegalArgumentException("Not found"));
+    }
+
     public Person addPerson(Person person){
         if(person.getId() != null) {
             throw new IllegalArgumentException("Person already has an ID");

@@ -27,6 +27,11 @@ public class PersonController {
         return personService.findPersons();
     }
 
+    @GetMapping(path = "/{person_id}")
+    public Person findPersonById(@PathVariable Long person_id){
+        return personService.findPersonById(person_id);
+    }
+
     @PutMapping(path = "/{person_id}")
     public Person updatePerson(
             @PathVariable Long person_id,

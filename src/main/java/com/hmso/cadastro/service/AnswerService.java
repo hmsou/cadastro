@@ -32,6 +32,10 @@ public class AnswerService {
         return answerRepository.findAll();
     }
 
+    public Answer findAnswerById(Long answerId){
+        return answerRepository.findById(answerId).orElseThrow(() -> new IllegalArgumentException("Not found"));
+    }
+
     public Answer updateAnswer(Long answerId, Answer answer){
         if(answer.getId() == null){
             throw new IllegalArgumentException("Answer must have an ID");

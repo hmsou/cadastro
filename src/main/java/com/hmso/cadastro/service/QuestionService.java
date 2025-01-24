@@ -33,6 +33,10 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
+    public Question findQuestionById(Long questionId){
+        return questionRepository.findById(questionId).orElseThrow(()-> new IllegalArgumentException("Not found"));
+    }
+
     public Question updateQuestion(Long questionId, Question question){
         Question existingQuestion = questionRepository.findById(questionId).orElseThrow(() -> new IllegalArgumentException("Not found"));
 
