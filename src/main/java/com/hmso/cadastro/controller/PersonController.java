@@ -5,6 +5,8 @@ import com.hmso.cadastro.dominio.entities.Person;
 import com.hmso.cadastro.mappers.PersonMapper;
 import com.hmso.cadastro.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,35 +22,35 @@ public class PersonController {
         this.personMapper = personMapper;
     }
 
-
     @PostMapping
-    public Person addPerson(@RequestBody Person person){
-        return personService.addPerson(person);
+    public ResponseEntity<Person> addPerson(@RequestBody Person person){
+        return new ResponseEntity<>(personService.addPerson(person), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<PersonDto> findAllPersons(){
-        return personService.findPersons()
+    public ResponseEntity<List<PersonDto>> findAllPersons(){
+        return new ResponseEntity<>(personService.findPersons()
                 .stream()
                 .map(personMapper::toDto)
-                .toList();
+                .toList(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{person_id}")
-    public Person findPersonById(@PathVariable Long person_id){
-        return personService.findPersonById(person_id);
+    public ResponseEntity<Person> findPersonById(@PathVariable Long person_id){
+        return new ResponseEntity<>(personService.findPersonById(person_id), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{person_id}")
-    public Person updatePerson(
+    public ResponseEntity<Person> updatePerson(
             @PathVariable Long person_id,
             @RequestBody Person person
     ){
-        return personService.updatePerson(person_id, person);
+        return new ResponseEntity<>(personService.updatePerson(person_id, person), HttpStatus.OK);
     }
 
     @DeleteMapping("/{person_id}")
-    public void deletePerson(@PathVariable Long person_id){
+    public ResponseEntity<Void> deletePerson(@PathVariable Long person_id){
         personService.deletePerson(person_id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
