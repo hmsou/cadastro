@@ -5,6 +5,8 @@ import com.hmso.cadastro.dominio.entities.Question;
 import com.hmso.cadastro.mappers.QuestionMapper;
 import com.hmso.cadastro.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,32 +23,33 @@ public class QuestionController {
     }
 
     @PostMapping
-    public Question addQuestion(@RequestBody Question question){
-        return questionService.addQuestion(question);
+    public ResponseEntity<Question> addQuestion(@RequestBody Question question){
+        return new ResponseEntity<>(questionService.addQuestion(question), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<QuestionDto> findAllQuestions(){
-        return questionService.findAllQuestions()
+    public ResponseEntity<List<QuestionDto>> findAllQuestions(){
+        return new ResponseEntity<>(questionService.findAllQuestions()
                 .stream()
                 .map(questionMapper::toDto)
-                .toList();
+                .toList(), HttpStatus.OK);
     }
 
     @GetMapping(path = "{question_id}")
-    public Question findQuestionById(@PathVariable Long question_id){
-        return questionService.findQuestionById(question_id);
+    public ResponseEntity<Question> findQuestionById(@PathVariable Long question_id){
+        return new ResponseEntity<>(questionService.findQuestionById(question_id), HttpStatus.OK);
     }
 
     @PutMapping(path = "/{question_id}")
-    public Question updateQuestion(
+    public ResponseEntity<Question> updateQuestion(
             @PathVariable Long question_id,
             @RequestBody Question question){
-        return questionService.updateQuestion(question_id, question);
+        return new ResponseEntity<>(questionService.updateQuestion(question_id, question), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{question_id}")
-    public void deleteQuestion(@PathVariable Long question_id){
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long question_id){
         questionService.deleteQuestion(question_id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
