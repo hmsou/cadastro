@@ -33,13 +33,12 @@ public class AnswerService {
         Person person = personRepository.findById(personId).orElseThrow(() -> new IllegalArgumentException("Person not found"));
         Question question = questionRepository.findById(questionId).orElseThrow(() -> new IllegalArgumentException("Question not found"));
 
-        answerRepository.save(new Answer(
+        return answerRepository.save(new Answer(
                 null,
                 answer.getText(),
                 person,
                 question
         ));
-        return answer;
     }
 
     public List<Answer> findAnswers(){

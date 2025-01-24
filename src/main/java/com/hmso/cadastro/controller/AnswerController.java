@@ -17,7 +17,7 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-    @PostMapping
+    @PostMapping(path= "/{person_id}/{question_id}")
     public Answer addAnswer(@PathVariable Long person_id,
                             @PathVariable Long question_id,
                             @RequestBody Answer answer){

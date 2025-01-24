@@ -1,5 +1,6 @@
 package com.hmso.cadastro.dominio;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Person {
     private double altura;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @JsonManagedReference("person-answers")
     private List<Answer> answers;
 
     public Person(Long id, String nome, String email, int idade, double altura, List<Answer> answers) {
