@@ -16,7 +16,7 @@ including the use of DTOs to control data exposure.
 - JSON responses tailored for efficiency using DTOs.
 
 ### Technologies Used
-- Java 17
+- Java 21
 - Spring Boot 3
   - Spring Data JPA
   - Spring Web
